@@ -33,14 +33,7 @@ const ResultCard = ({ label, value, colorClass = "text-white" }) => (
 );
 
 const Calculator = () => {
-  const [formData, setFormData] = useState({
-    premium_per_year: 10000,
-    premium_years: 10,
-    payout_every: 2,
-    payout_amount: 5000,
-    maturity_amount: 100000,
-    total_years: 20,
-  });
+  const [formData, setFormData] = useState();
 
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);

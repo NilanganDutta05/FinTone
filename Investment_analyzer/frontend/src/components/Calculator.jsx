@@ -16,7 +16,8 @@ const InputField = ({ label, name, value, onChange, prefix }) => (
         name={name}
         value={value}
         onChange={onChange}
-        className={`w-full bg-slate-800/50 border border-slate-700 text-white rounded-xl py-3 outline-none transition-all duration-300 focus:bg-slate-800 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 shadow-inner group-hover:border-slate-600 ${prefix ? 'pl-8 pr-4' : 'px-4'}`}
+        placeholder="Enter value"
+        className={`w-full bg-slate-800/50 border border-slate-700 text-white placeholder:text-slate-500 rounded-xl py-3 outline-none transition-all duration-300 focus:bg-slate-800 focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 shadow-inner group-hover:border-slate-600 ${prefix ? 'pl-8 pr-4' : 'px-4'}`}
       />
     </div>
   </div>
@@ -33,7 +34,14 @@ const ResultCard = ({ label, value, colorClass = "text-white" }) => (
 );
 
 const Calculator = () => {
-  const [formData, setFormData] = useState();
+  const [formData, setFormData] = useState({
+    premium_per_year: "",
+    premium_years: "",
+    payout_every: "",
+    payout_amount: "",
+    maturity_amount: "",
+    total_years: "",
+  });
 
   const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -43,7 +51,7 @@ const Calculator = () => {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: parseFloat(value) || 0,
+      [name]: value === "" ? "" : parseFloat(value) || 0,
     }));
   };
 

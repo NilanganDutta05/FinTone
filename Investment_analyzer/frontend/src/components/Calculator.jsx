@@ -60,7 +60,10 @@ const Calculator = () => {
     setError(null);
 
     try {
-      const response = await fetch("/api/analyze-scheme", {
+      // Use the environment variable for production, or fallback to the Vite proxy in development
+      const API_URL = import.meta.env.VITE_API_URL || "";
+      
+      const response = await fetch(`${API_URL}/api/analyze-scheme`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

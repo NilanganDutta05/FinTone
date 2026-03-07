@@ -1,174 +1,239 @@
-# Investment Analyzer
+# FinTone 💰📊
 
-A full-stack investment analysis application that calculates investment returns, IRR, and XIRR for various investment schemes.
+**FinTone** is a full-stack financial analysis tool designed to help users evaluate investment or insurance schemes by calculating realistic returns and generating cash-flow projections.
 
-## Project Structure
+It allows users to input investment details and receive clear financial insights, making it easier to understand and compare long-term financial products.
+
+---
+
+# 🚀 Features
+
+* 📈 **Investment Return Analysis**
+  Evaluate total investment, maturity value, and overall profitability.
+
+* 💵 **Cash Flow Generation**
+  Generates year-by-year cash flow projections based on premiums and payouts.
+
+* 🧮 **Financial Metrics**
+  Calculates key metrics such as **IRR**, **CAGR**, and **XIRR**.
+
+* ⚡ **Fast Backend API**
+  Backend built using **FastAPI** for efficient request handling.
+
+* 🎨 **Modern UI**
+  Clean and responsive interface built with **React, Vite, and TailwindCSS**.
+
+* 📱 **Responsive Design**
+  Works smoothly across desktop and mobile devices.
+
+---
+
+# 🏗️ Project Structure
+
+```text
+FinTone
+│
+├── Investment_analyzer
+│   ├── backend
+│   │   ├── app
+│   │   │   ├── api           # API routes
+│   │   │   ├── models        # Pydantic models
+│   │   │   ├── services      # Financial logic and calculation engine
+│   │   │   └── utils         # Helper utilities
+│   │   │
+│   │   ├── run.py            # Backend entry point
+│   │   └── requirements.txt
+│   │
+│   └── frontend
+│       ├── src
+│       │   ├── components    # React components
+│       │   ├── App.jsx
+│       │   └── main.jsx
+│       │
+│       ├── package.json
+│       └── vite.config.js
+```
+
+The project follows a **layered architecture**:
 
 ```
-Investment_analyzer/
-├── backend/           # FastAPI Python backend
-│   ├── app/          # Application code
-│   │   ├── main.py   # FastAPI app initialization
-│   │   ├── api/      # API routes
-│   │   ├── models/   # Data models
-│   │   ├── services/ # Business logic
-│   │   └── utils/    # Helper functions
-│   ├── requirements.txt
-│   └── run.py        # Run script
-└── frontend/         # React/Vite frontend
-    ├── src/
-    │   ├── components/  # React components
-    │   ├── App.jsx      # Root component
-    │   └── main.jsx    # Entry point
-    ├── package.json
-    └── vite.config.js
+Frontend → API Routes → Services → Financial Calculations
 ```
 
-## Prerequisites
+This separation helps keep the project maintainable and easy to extend.
 
-- Python 3.8+
-- Node.js 16+
-- npm or yarn
+---
 
-## Backend Setup
+# 🧠 How It Works
 
-1. Navigate to the backend directory:
+1. The user enters investment details in the frontend.
+2. The frontend sends the data to the backend API.
+3. The backend processes the data using the financial calculation engine.
+4. Cash flows and financial metrics are calculated.
+5. Results are returned to the frontend and displayed to the user.
+
+---
+
+# 🛠️ Tech Stack
+
+### Frontend
+
+* React
+* Vite
+* TailwindCSS
+
+### Backend
+
+* FastAPI
+* Python
+* numpy-financial
+* pyxirr
+* pydantic
+
+### Deployment
+
+* Frontend: Vercel
+* Backend: Render
+
+---
+
+# ⚙️ Local Setup
+
+## 1. Clone the Repository
+
+```bash
+git clone https://github.com/NilanganDutta05/FinTone.git
+cd FinTone
+cd Investment_analyzer
+```
+
+---
+
+## 2. Backend Setup
+
+Navigate to the backend directory:
 
 ```bash
 cd backend
 ```
 
-2. Install Python dependencies:
+(Optional) Create a virtual environment:
 
 ```bash
-python -m pip install -r requirements.txt
+python -m venv .venv
 ```
 
-3. Run the development server:
+Activate the environment:
+
+Windows:
 
 ```bash
-python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+.venv\Scripts\activate
 ```
 
-Or use the provided run script:
+Mac/Linux:
+
+```bash
+source .venv/bin/activate
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Run the backend server:
 
 ```bash
 python run.py
 ```
 
-The API will be available at `http://localhost:8000`
+Backend runs at:
 
-### API Endpoints
-
-- `GET /` - Health check
-- `POST /api/analyze-scheme` - Analyze an investment scheme
-
-### Request Body Example
-
-```json
-{
-  "premium_per_year": 10000,
-  "premium_years": 10,
-  "payout_every": 2,
-  "payout_amount": 5000,
-  "maturity_amount": 100000,
-  "total_years": 20
-}
+```
+http://localhost:8000
 ```
 
-## Frontend Setup
+---
 
-1. Navigate to the frontend directory:
+## 3. Frontend Setup
 
-```bash
-cd frontend
-```
-
-2. Install dependencies:
+Open a **new terminal** and run:
 
 ```bash
+cd FinTone/Investment_analyzer/frontend
 npm install
-```
-
-3. Run the development server:
-
-```bash
 npm run dev
 ```
 
-The application will be available at `http://localhost:5173`
+Frontend runs at:
 
-### Build for Production
-
-```bash
-npm run build
+```
+http://localhost:5173
 ```
 
-### Lint Code
+---
 
-```bash
-npm run lint
+# 📊 Example Workflow
+
+```
+User Input
+   ↓
+React Frontend
+   ↓
+API Request
+   ↓
+FastAPI Backend
+   ↓
+Financial Calculations
+   ↓
+Results Displayed
 ```
 
-## Features
+---
 
-- **Investment Analysis**: Calculate returns on investment schemes
-- **IRR Calculation**: Internal Rate of Return
-- **XIRR Calculation**: Exact Internal Rate of Return
-- **Responsive UI**: Works on desktop and mobile devices
-- **Real-time API Integration**: Seamless communication between frontend and backend
+# 🔮 Future Improvements
 
-## Technologies Used
+Planned improvements include:
 
-### Backend
+* 📄 Upload and analyze financial scheme PDFs
+* 👤 User authentication and personal dashboards
+* 💾 Save and compare analyses
+* 📈 Data visualization charts
+* 📊 Integration with external financial data APIs
 
-- FastAPI - Modern Python web framework
-- Pydantic - Data validation
-- numpy-financial - Financial calculations
-- pyxirr - XIRR calculations
-- Uvicorn - ASGI server
+---
 
-### Frontend
+# 🤝 Contributing
 
-- React 19
-- Vite - Build tool
-- Tailwind CSS - Styling
-- Tailwind CSS Vite plugin
+Contributions are welcome.
 
-## Development
+1. Fork the repository
+2. Create a feature branch:
 
-### Environment Variables
+```
+git checkout -b feature-name
+```
 
-The frontend is configured to proxy API requests to `http://localhost:8000/api` during development.
+3. Commit your changes:
 
-### Code Quality
+```
+git commit -m "Add feature"
+```
 
-The project includes:
+4. Push and open a Pull Request
 
-- ESLint configuration for code linting
-- Tailwind CSS for consistent styling
-- React best practices and hooks
+---
 
-## Troubleshooting
+# 📜 License
 
-### Backend won't start
+This project is open-source and available under the **MIT License**.
 
-- Ensure Python 3.8+ is installed
-- Verify all dependencies are installed: `pip install -r requirements.txt`
-- Check that port 8000 is not in use
+---
 
-### Frontend won't start
+# 👨‍💻 Author
 
-- Ensure Node.js 16+ is installed
-- Clear node_modules and reinstall: `rm -rf node_modules && npm install`
-- Check that port 5173 is not in use
+Built by **Nilangan Dutta**
 
-### API connection issues
-
-- Ensure both frontend and backend servers are running
-- Check CORS settings in `backend/app/main.py`
-- Verify the API proxy in `frontend/vite.config.js`
-
-## License
-
-MIT
+If you found this project helpful, consider ⭐ starring the repository.
